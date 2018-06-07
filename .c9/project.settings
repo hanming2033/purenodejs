@@ -2,6 +2,9 @@
     "build": {
         "@saveall": true
     },
+    "golang": {
+        "@formatter": ""
+    },
     "instance": {
         "@automaticShutdown": "30"
     },
