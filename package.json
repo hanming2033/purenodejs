@@ -1,8 +1,8 @@
 {
   "name": "environment",
   "version": "1.0.0",
-  "description": "___        ______     ____ _                 _  ___           / \\ \\      / / ___|   / ___| | ___  _   _  __| |/ _ \\         / _ \\ \\ /\\ / /\\___ \\  | |   | |/ _ \\| | | |/ _` | (_) |       / ___ \\ V  V /  ___) | | |___| | (_) | |_| | (_| |\\__, |      /_/   \\_\\_/\\_/  |____/   \\____|_|\\___/ \\__,_|\\__,_|  /_/   -----------------------------------------------------------------",
-  "main": "hello.js",
+  "description": "none",
+  "main": "src/index.ts",
   "dependencies": {
     "nodemon": "^1.17.5",
     "prettier": "^1.13.4",
@@ -11,12 +11,19 @@
     "tslint-config-prettier": "^1.13.0",
     "typescript": "^2.9.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^8.11.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node src/index.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true
+  }
 }
