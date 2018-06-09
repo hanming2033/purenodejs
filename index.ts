@@ -16,7 +16,7 @@ const server = http.createServer((req: http.ServerRequest, res: http.ServerRespo
   const parsedUrl = url.parse(req.url, true)
 
   // 2.get path from url
-  // returns the untrimmed path that the user requested
+  // returns the untrimmed path that the user requested 
   // path without the tld
   const path = parsedUrl.pathname
   // trim off the beining and ending slashes
@@ -32,11 +32,16 @@ const server = http.createServer((req: http.ServerRequest, res: http.ServerRespo
   // get http method: get, post, put ...
   const method = req.method.toLocaleLowerCase()
 
+  // TODO: continue headers
+  // get headers as an object
+  const headers = req.headers
+
   // 3.send response
   res.end('hello world\n')
 
   // 4.log the request path
-  console.log(`Request is received on path: ${trimmedPath} ~ with method: ${method}`)
+  console.log(headers)
+  console.log(method)
   console.log(qryStrObj)
 })
 // 2. tell server to listen on a port
