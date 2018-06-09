@@ -34,30 +34,30 @@ const server = http.createServer((req: http.ServerRequest, res: http.ServerRespo
     // construct data object(from the path, headers... derived above) to send to the resolver
     const data: IDataFromReq = { trimmedPath, qryStrObj, method, headers, payload: stream }
     // route the request to the resolver specified in the router
-    const { statusCode, result } = resolve(data)
-    // convert the result into a string
-    // result here is the result we send to user
-    const resultStr = JSON.stringify(result)
-    // return the response: header & result
-    res.setHeader('Content-Type','application/json')
+    const { statusCode, response } = resolve(data)
+    // convert the response into a string
+    // response here is the response we send to user
+    const responseStr = JSON.stringify(response)
+    // return the response: header & response
+    res.setHeader('Content-Type', 'application/json')
     res.writeHead(statusCode)
-    res.end(resultStr)
-    console.log('returning this response : ', statusCode, resultStr)
+    res.end(responseStr)
+    console.log('returning this response : ', statusCode, responseStr)
   })
 })
 
 server.listen(3000, () => console.log('Server is listening on 3000'))
 
-// Router: match incoming path to some hanlders
+// Router: match incoming path to some resolvers
 // define a request router & resolvers
 const router: IRouter = {
   sample: data => {
     console.log(data)
-    return { statusCode: 200, result: { name: 'sample resolver' } }
+    return { statusCode: 200, response: { name: 'sample resolver' } }
   },
   notFound: data => {
     console.log(data)
-    return { statusCode: 404, result: {} }
+    return { statusCode: 404, response: {} }
   }
 }
 
@@ -70,12 +70,12 @@ interface IDataFromReq {
   payload: string
 }
 
-interface IResults {
+interface IResponse {
   statusCode: number
-  result: { [key: string]: any }
+  response: { [key: string]: any }
 }
 
-type resolver = (data: any) => IResults
+type resolver = (data: any) => IResponse
 
 interface IRouter {
   [key: string]: resolver
